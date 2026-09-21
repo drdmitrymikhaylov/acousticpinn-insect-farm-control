@@ -1,0 +1,158 @@
+{
+ "on setpoint": {
+  "camera": {
+   "n_per_arm": 300,
+   "biomass_g": {
+    "diff_vs_calendar": 7.971322857898031,
+    "ci95_half": 13.963805116072091,
+    "rel_pct": 0.49231340715658445,
+    "excludes_zero": false
+   },
+   "fcr": {
+    "diff_vs_calendar": 0.057983433774716264,
+    "ci95_half": 0.009131472430199109,
+    "rel_pct": 2.994020891445182,
+    "excludes_zero": true
+   },
+   "harvest_day": {
+    "diff_vs_calendar": 0.0,
+    "ci95_half": 0.0,
+    "rel_pct": 0.0,
+    "excludes_zero": false
+   },
+   "fraction_harvested_as_adults": {
+    "calendar": 1.0,
+    "camera": 0.9866666666666667
+   }
+  },
+  "full": {
+   "n_per_arm": 300,
+   "biomass_g": {
+    "diff_vs_calendar": 1.8636723627923857,
+    "ci95_half": 13.925273695199943,
+    "rel_pct": 0.11510145895556177,
+    "excludes_zero": false
+   },
+   "fcr": {
+    "diff_vs_calendar": 0.1357950334234721,
+    "ci95_half": 0.007903076254720021,
+    "rel_pct": 7.011884956728085,
+    "excludes_zero": true
+   },
+   "harvest_day": {
+    "diff_vs_calendar": 0.509999999999998,
+    "ci95_half": 0.05951074151407926,
+    "rel_pct": 0.980769230769227,
+    "excludes_zero": true
+   },
+   "fraction_harvested_as_adults": {
+    "calendar": 1.0,
+    "full": 1.0
+   }
+  }
+ },
+ "1.5 C cold": {
+  "camera": {
+   "n_per_arm": 300,
+   "biomass_g": {
+    "diff_vs_calendar": -3.6074527816185764,
+    "ci95_half": 12.129863377317813,
+    "rel_pct": -0.29992785420501794,
+    "excludes_zero": false
+   },
+   "fcr": {
+    "diff_vs_calendar": -0.001047541365344129,
+    "ci95_half": 0.0029629419769803106,
+    "rel_pct": -0.059265288566600176,
+    "excludes_zero": false
+   },
+   "harvest_day": {
+    "diff_vs_calendar": 0.0,
+    "ci95_half": 0.0,
+    "rel_pct": 0.0,
+    "excludes_zero": false
+   },
+   "fraction_harvested_as_adults": {
+    "calendar": 0.0,
+    "camera": 0.0
+   }
+  },
+  "full": {
+   "n_per_arm": 300,
+   "biomass_g": {
+    "diff_vs_calendar": 353.90980487585375,
+    "ci95_half": 12.445923247011402,
+    "rel_pct": 29.424476156526616,
+    "excludes_zero": true
+   },
+   "fcr": {
+    "diff_vs_calendar": 0.3000373458147034,
+    "ci95_half": 0.005707531227639073,
+    "rel_pct": 16.974794952010022,
+    "excludes_zero": true
+   },
+   "harvest_day": {
+    "diff_vs_calendar": 6.18,
+    "ci95_half": 0.06138552561928223,
+    "rel_pct": 11.884615384615385,
+    "excludes_zero": true
+   },
+   "fraction_harvested_as_adults": {
+    "calendar": 0.0,
+    "full": 1.0
+   }
+  }
+ },
+ "1.5 C warm": {
+  "camera": {
+   "n_per_arm": 300,
+   "biomass_g": {
+    "diff_vs_calendar": 153.34800207915396,
+    "ci95_half": 12.107366640206358,
+    "rel_pct": 10.41954381196137,
+    "excludes_zero": true
+   },
+   "fcr": {
+    "diff_vs_calendar": 0.6009202922837322,
+    "ci95_half": 0.012357584306385559,
+    "rel_pct": 27.217040963115583,
+    "excludes_zero": true
+   },
+   "harvest_day": {
+    "diff_vs_calendar": 0.0,
+    "ci95_half": 0.0,
+    "rel_pct": 0.0,
+    "excludes_zero": false
+   },
+   "fraction_harvested_as_adults": {
+    "calendar": 1.0,
+    "camera": 1.0
+   }
+  },
+  "full": {
+   "n_per_arm": 300,
+   "biomass_g": {
+    "diff_vs_calendar": 206.65855475144508,
+    "ci95_half": 12.924814302984089,
+    "rel_pct": 14.04183840776636,
+    "excludes_zero": true
+   },
+   "fcr": {
+    "diff_vs_calendar": -0.10264734049579438,
+    "ci95_half": 0.01107727905184155,
+    "rel_pct": -4.64913052014193,
+    "excludes_zero": true
+   },
+   "harvest_day": {
+    "diff_vs_calendar": -4.086666666666666,
+    "ci95_half": 0.04418903768868306,
+    "rel_pct": -7.858974358974359,
+    "excludes_zero": true
+   },
+   "fraction_harvested_as_adults": {
+    "calendar": 1.0,
+    "full": 1.0
+   }
+  }
+ }
+}

@@ -75,6 +75,34 @@ but in only 3 of 50 *G. bimaculatus*: a continuous trill is easy to measure, a
 chirp in a noisy room is not. A farm that wants pulse rate needs a microphone
 in the bin, not across the room.
 
+**A fourth, on re-reading: the ± in the carrier column is not a spread, it is a
+mixture.** The per-recording carriers are in `results/song_measurements.json`,
+and read as a histogram (`results/carrier_clusters.json`) the farmed species
+splits in two. 27 of the 50 *Acheta domesticus* recordings sit in 3.5–6 kHz at
+**4.53 ± 0.34 kHz**, which is within the published 4.8 kHz and as tight as the
+two *Gryllus* species; 19 sit below 2.5 kHz, where the peak picker has locked
+onto room noise, a fan or a low harmonic of something else, and 3 sit above
+6 kHz. The mean of 3.73 ± 1.93 is the average of two clusters that should not
+be averaged, and the paragraph above blaming distance and indoor recording is
+only half the story: the pipeline has no way to reject a recording whose
+loudest stable tone is not the cricket. The same happens to the mole cricket:
+mean 3.02 ± 2.50, median **1.85**, 32 of 39 in a 1.5–3.5 kHz band at 1.89 ± 0.33,
+and 7 recordings above 6 kHz. Medians, and the in-band mean with its count, are
+the numbers to quote; the table's mean ± sd stays as it was so the change is
+visible.
+
+| Taxon | published, kHz | median | in band | in-band mean | below 2.5 | above 6 |
+|---|---|---|---|---|---|---|
+| *Acheta domesticus* | 4.8 | 4.28 | 27 / 50 | 4.53 ± 0.34 | 19 | 3 |
+| *Gryllus bimaculatus* | 4.8 | 4.84 | 45 / 50 | 4.83 ± 0.38 | 1 | 1 |
+| *Gryllus campestris* | 4.5 | 4.71 | 43 / 50 | 4.75 ± 0.27 | 4 | 1 |
+| *Oecanthus fultoni* | 2.6 | 2.24 | 45 / 49 | 2.25 ± 0.36 | — | 3 |
+| *Oecanthus pellucens* | 2.5 | 2.69 | 26 / 27 | 2.62 ± 0.42 | — | 1 |
+| *Neocurtilla hexadactyla* | 2.0 | 1.85 | 32 / 39 | 1.89 ± 0.33 | — | 7 |
+
+*Band: 3.5–6 kHz for the field crickets, 1.5–3.5 kHz for the tree and mole
+crickets; carrier at least 10 dB above background; ± is the sample sd.*
+
 ## Counting males without touching them
 
 Two estimators of the number of calling males, both running on the same signal:
@@ -98,6 +126,13 @@ The duty cycle is not assumed: it is the median of the field recordings, 0.19.
 | 30 | 8.4 % | 10.6 % |
 | 50 | unusable | 8.0 % |
 | 120 | unusable | 5.3 % |
+
+The energy column is the spread only. The estimator also carries a bias the
+table does not show: it reads **8 % low at every count** (−7.6 to −10.9 %
+across 1 to 120 males, `results/chorus.json`), because the per-male level is
+set by the median recording and the loud tail pulls the true mean above it. A
+calibration absorbs a constant bias; the silence estimator has none to absorb
+(|bias| < 0.5 % up to 20 males).
 
 So the calibration-free method is the better one up to about **30 calling
 males** and dead by 50. That maps onto a real split in how a farm is laid out:
@@ -128,7 +163,16 @@ ways of running it:
 | | camera | 1625 ± 90 | **2.81** | 52 |
 | | **camera + mic** | **1678 ± 98** | **2.11** | 47.9 |
 
-On setpoint the sensors are worth nothing, and the honest thing is to say so.
+On setpoint the sensors are worth nothing in grams, and the honest thing is to
+say so — and to say what they cost. With 300 runs per arm the differences
+against the calendar policy carry 95 % intervals of about ± 13 g
+(`results/policy_differences.json`): on setpoint camera **+8 ± 14 g** and
+camera + microphone **+2 ± 14 g**, both compatible with zero. Feed is not:
+camera + microphone runs FCR **+0.14 ± 0.01** above calendar, seven percent
+more feed for the same harvest, because it waits half a day past the calendar
+for the first song and feeds adults meanwhile. The earlier wording "worth
+nothing" understated that; on a well-controlled room the microphone is a small
+net cost.
 
 Everything they are worth appears when the room drifts by a degree and a half,
 which is what rooms do. Run cold and the calendar harvests nymphs: 1203 g
@@ -137,6 +181,13 @@ cohort to actually mature. Run warm and the camera alone is the worst of the
 three on feed — FCR 2.81 against 2.11 — because it dutifully feeds adults that
 should already have been harvested. The camera decides how much to feed; the
 microphone decides when to stop.
+
+With intervals: cold, camera + microphone **+354 ± 12 g** (+29 %), and the
+calendar and camera-only arms harvest **0 %** of the cohort as adults against
+100 % for the microphone arm. Warm, camera alone is **+153 ± 12 g** (+10 %)
+over calendar — a real gain the text above does not mention, bought with
+FCR +0.60 ± 0.01 — and camera + microphone **+207 ± 13 g** (+14 %) at FCR
+−0.10 ± 0.01, i.e. more crickets on less feed, harvested four days early.
 
 ![Cohort](figures/04_cohort.png)
 
@@ -160,6 +211,14 @@ is there so the model can be caught being wrong.
   It does not — the number is 30 animals, and it is in the table.
 - That sexing can be done acoustically at the individual level. It cannot; the
   method is a ratio of two population counts, and it needs the camera.
+
+## Checking the numbers
+
+`results/` holds the files behind every table: `song_summary.json` and
+`song_measurements.json` (one row per recording), `chorus.json`,
+`policies.json` (mean, sd, n per condition and policy), and the two derived
+files above. `tests/test_readme_numbers.py` recomputes every number on this
+page from them; `python -m pytest tests/`.
 
 ## Sources
 

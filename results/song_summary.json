@@ -1,0 +1,146 @@
+{
+  "n_downloaded": 319,
+  "n_orthoptera": 313,
+  "n_carrier": 311,
+  "n_pulse_resolved": 89,
+  "snr_min_db": 10.0,
+  "min_periodicity": 0.2,
+  "dropped_non_orthoptera": [
+    "Acris gryllus"
+  ],
+  "taxa": {
+    "Gryllus bimaculatus": {
+      "n_carrier": 50,
+      "carrier_khz": [
+        4.753125,
+        1.0908924725740619
+      ],
+      "carrier_khz_median": 4.83984375,
+      "n_pulse": 3,
+      "pulse_rate_hz": [
+        132.76708872998316,
+        19.845496285720568
+      ],
+      "duty_cycle": [
+        0.23209142007407502,
+        0.09690371674836394
+      ]
+    },
+    "Acheta domesticus": {
+      "n_carrier": 50,
+      "carrier_khz": [
+        3.733359375,
+        1.92863233581924
+      ],
+      "carrier_khz_median": 4.275390625,
+      "n_pulse": 5,
+      "pulse_rate_hz": [
+        74.9283619504644,
+        34.2292348250806
+      ],
+      "duty_cycle": [
+        0.16259446784830398,
+        0.07856412842776068
+      ]
+    },
+    "Gryllus campestris": {
+      "n_carrier": 50,
+      "carrier_khz": [
+        4.46765625,
+        0.9362081072695256
+      ],
+      "carrier_khz_median": 4.705078125,
+      "n_pulse": 4,
+      "pulse_rate_hz": [
+        44.98109071329094,
+        23.389244061461806
+      ],
+      "duty_cycle": [
+        0.21498182975824762,
+        0.07094580952592089
+      ]
+    },
+    "Oecanthus fultoni": {
+      "n_carrier": 49,
+      "carrier_khz": [
+        2.616230867346939,
+        1.3486677360349484
+      ],
+      "carrier_khz_median": 2.23828125,
+      "n_pulse": 9,
+      "pulse_rate_hz": [
+        51.95648165185583,
+        18.6812399897306
+      ],
+      "duty_cycle": [
+        0.17371719608615868,
+        0.08709111178721654
+      ]
+    },
+    "Neocurtilla hexadactyla": {
+      "n_carrier": 39,
+      "carrier_khz": [
+        3.0176282051282053,
+        2.504704962657215
+      ],
+      "carrier_khz_median": 1.8515625,
+      "n_pulse": 37,
+      "pulse_rate_hz": [
+        74.20317156471319,
+        25.61971400446843
+      ],
+      "duty_cycle": [
+        0.23233621178627756,
+        0.09231807647049568
+      ]
+    },
+    "Oecanthus pellucens": {
+      "n_carrier": 27,
+      "carrier_khz": [
+        2.860966435185185,
+        1.3099619537079945
+      ],
+      "carrier_khz_median": 2.6875,
+      "n_pulse": 20,
+      "pulse_rate_hz": [
+        32.20240152479088,
+        8.373563199989453
+      ],
+      "duty_cycle": [
+        0.15808797416124262,
+        0.10958087948297675
+      ]
+    },
+    "Gryllus pennsylvanicus": {
+      "n_carrier": 26,
+      "carrier_khz": [
+        4.868990384615385,
+        1.485290879660687
+      ],
+      "carrier_khz_median": 4.671875,
+      "n_pulse": 3,
+      "pulse_rate_hz": [
+        85.73450493363903,
+        57.14195942689511
+      ],
+      "duty_cycle": [
+        0.14939540877526264,
+        0.09057278079226799
+      ]
+    },
+    "Oecanthus rileyi": {
+      "n_carrier": 3,
+      "carrier_khz": [
+        2.1627604166666665,
+        0.16586109024928225
+      ],
+      "carrier_khz_median": 2.078125,
+      "n_pulse": 0,
+      "pulse_rate_hz": null,
+      "duty_cycle": [
+        0.17187650061642637,
+        0.08531188279222386
+      ]
+    }
+  }
+}
