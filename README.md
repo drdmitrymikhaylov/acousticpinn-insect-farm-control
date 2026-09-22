@@ -9,9 +9,9 @@
 > ### Source code is not public
 >
 > The pipeline is under active development. The repository is private; **the
-> source is available for technical review under NDA** — contact me through the
+> source is available for technical review under NDA** – contact me through the
 > links at the end of this page. This page documents what was measured, what was
-> modelled, and what came out.
+> modelled, and what the models returned.
 >
 > ### Status
 >
@@ -23,29 +23,29 @@
 
 ---
 
-## The two facts the whole design rests on
+## Two facts: males sing, cameras count
 
 1. **Only males stridulate, and only as adults.** A microphone in a rearing bin
    therefore measures males, and a bin of nymphs is silent. The day it starts
    singing is the day the cohort has reached adulthood.
 2. **A camera counts everyone.** Divide the acoustic male count by the camera
-   total and you have the sex ratio, continuously, without emptying the bin
-   onto a tray and sorting by ovipositor.
+   total and you have the sex ratio, continuously. Nobody has to empty the bin
+   onto a tray and sort by ovipositor.
 
 Everything below is what those two facts are actually worth, in grams.
 
-## What was measured
+## Recordings: 319 files, 22 taxa, one frog
 
-319 recordings of crickets were fetched from iNaturalist under open licences
-(attribution for every file is recorded, per the licence terms). These are amateur field recordings — phones, wind,
-traffic — which is the point: a farm microphone is a cheap microphone in a room
-with fans running.
+319 recordings of crickets were fetched from iNaturalist under open licences.
+Attribution for every file is recorded, per the licence terms. These are
+amateur field recordings – phones, wind, traffic – which is the point. A farm
+microphone is a cheap microphone in a room with fans running.
 
 First, a hygiene step that turned out to matter. Searching by name returns
-things that are not crickets: *Acris gryllus* is a **frog**, and it arrives on a
-cricket search because of its species epithet. An ancestry check against iNaturalist filters this: it checks the
-ancestry of every taxon against iNaturalist and keeps Orthoptera only — 22 taxa
-of 23, 313 recordings of 319.
+things that are not crickets. *Acris gryllus* is a **frog**, and it arrives on
+a cricket search because of its species epithet. An ancestry check against
+iNaturalist filters this. It checks the ancestry of every taxon and keeps
+Orthoptera only: 22 taxa of 23, 313 recordings of 319.
 
 | | |
 |---|---|
@@ -63,59 +63,62 @@ of 23, 313 recordings of 319.
 | *Neocurtilla hexadactyla* | 39 | 3.02 ± 2.50 | 74.2 ± 25.6 (37) | 0.23 |
 | *Oecanthus pellucens* | 27 | 2.86 ± 1.31 | 32.2 ± 8.4 (20) | 0.16 |
 
-Three things worth reading off that table.
+Three things are worth reading off that table.
 
-*Oecanthus fultoni* comes out at 2.62 kHz against a published 2.6 kHz, which is
+*Oecanthus fultoni* comes out at 2.62 kHz against a published 2.6 kHz. That is
 the pipeline validating itself on the one species with a well known carrier.
-*Acheta domesticus* comes out at 3.73 ± 1.93 kHz against a published 4.8 kHz —
-the farmed species is the one the field archive is worst at, because it is
+*Acheta domesticus* comes out at 3.73 ± 1.93 kHz against a published 4.8 kHz.
+The farmed species is the one the field archive is worst at, because it is
 recorded indoors, at a distance, by people who are not sure what they are
 pointing at. And the pulse rate resolves in 37 of 39 mole-cricket recordings
-but in only 3 of 50 *G. bimaculatus*: a continuous trill is easy to measure, a
+but in only 3 of 50 *G. bimaculatus*. A continuous trill is easy to measure; a
 chirp in a noisy room is not. A farm that wants pulse rate needs a microphone
 in the bin, not across the room.
 
-**A fourth, on re-reading: the ± in the carrier column is not a spread, it is a
-mixture.** The per-recording carriers are in `results/song_measurements.json`,
-and read as a histogram (`results/carrier_clusters.json`) the farmed species
-splits in two. 27 of the 50 *Acheta domesticus* recordings sit in 3.5–6 kHz at
+## Carrier column: a mixture, not a mean
+
+**A fourth point, on re-reading: the ± in the carrier column is not a spread.**
+The per-recording carriers are in `results/song_measurements.json`. Read as a
+histogram (`results/carrier_clusters.json`), the farmed species splits in two.
+27 of the 50 *Acheta domesticus* recordings sit in 3.5 to 6 kHz at
 **4.53 ± 0.34 kHz**, which is within the published 4.8 kHz and as tight as the
-two *Gryllus* species; 19 sit below 2.5 kHz, where the peak picker has locked
+two *Gryllus* species. 19 sit below 2.5 kHz, where the peak picker has locked
 onto room noise, a fan or a low harmonic of something else, and 3 sit above
 6 kHz. The mean of 3.73 ± 1.93 is the average of two clusters that should not
-be averaged, and the paragraph above blaming distance and indoor recording is
-only half the story: the pipeline has no way to reject a recording whose
-loudest stable tone is not the cricket. The same happens to the mole cricket:
-mean 3.02 ± 2.50, median **1.85**, 32 of 39 in a 1.5–3.5 kHz band at 1.89 ± 0.33,
-and 7 recordings above 6 kHz. Medians, and the in-band mean with its count, are
-the numbers to quote; the table's mean ± sd stays as it was so the change is
-visible.
+be averaged. The paragraph above blaming distance and indoor recording is
+only half the story. The pipeline has no way to reject a recording whose
+loudest stable tone is not the cricket.
+
+The same happens to the mole cricket: mean 3.02 ± 2.50, median **1.85**, 32 of
+39 in a 1.5 to 3.5 kHz band at 1.89 ± 0.33, and 7 recordings above 6 kHz.
+Medians, and the in-band mean with its count, are the numbers to quote. The
+table's mean ± sd stays as it was so the change is visible.
 
 | Taxon | published, kHz | median | in band | in-band mean | below 2.5 | above 6 |
 |---|---|---|---|---|---|---|
 | *Acheta domesticus* | 4.8 | 4.28 | 27 / 50 | 4.53 ± 0.34 | 19 | 3 |
 | *Gryllus bimaculatus* | 4.8 | 4.84 | 45 / 50 | 4.83 ± 0.38 | 1 | 1 |
 | *Gryllus campestris* | 4.5 | 4.71 | 43 / 50 | 4.75 ± 0.27 | 4 | 1 |
-| *Oecanthus fultoni* | 2.6 | 2.24 | 45 / 49 | 2.25 ± 0.36 | — | 3 |
-| *Oecanthus pellucens* | 2.5 | 2.69 | 26 / 27 | 2.62 ± 0.42 | — | 1 |
-| *Neocurtilla hexadactyla* | 2.0 | 1.85 | 32 / 39 | 1.89 ± 0.33 | — | 7 |
+| *Oecanthus fultoni* | 2.6 | 2.24 | 45 / 49 | 2.25 ± 0.36 | – | 3 |
+| *Oecanthus pellucens* | 2.5 | 2.69 | 26 / 27 | 2.62 ± 0.42 | – | 1 |
+| *Neocurtilla hexadactyla* | 2.0 | 1.85 | 32 / 39 | 1.89 ± 0.33 | – | 7 |
 
-*Band: 3.5–6 kHz for the field crickets, 1.5–3.5 kHz for the tree and mole
-crickets; carrier at least 10 dB above background; ± is the sample sd.*
+*Band: 3.5 to 6 kHz for the field crickets, 1.5 to 3.5 kHz for the tree and
+mole crickets; carrier at least 10 dB above background; ± is the sample sd.*
 
-## Counting males without touching them
+## Counting males: two estimators on one signal
 
-Two estimators of the number of calling males, both running on the same signal:
+Two estimators of the number of calling males run on the same signal:
 
-- **silence** — the share of time nobody is singing. If each male sings with
+- **silence** – the share of time nobody is singing. If each male sings with
   duty cycle *d*, that share is (1−*d*)^N, which inverts to N. It needs no
-  calibration at all: no microphone gain, no distances. And it runs out, because
-  once the bin is never silent the measurement is spent.
-- **energy** — band energy adds over incoherent sources, so it grows linearly in
-  N and never saturates. It does need the mean per-male level, which is exactly
-  what drifts as animals move around the bin.
+  calibration at all: no microphone gain, no distances. And it runs out,
+  because once the bin is never silent the measurement is spent.
+- **energy** – band energy adds over incoherent sources, so it grows linearly
+  in N and never saturates. It does need the mean per-male level, which is
+  exactly what drifts as animals move around the bin.
 
-The duty cycle is not assumed: it is the median of the field recordings, 0.19.
+The duty cycle is not assumed. It is the median of the field recordings, 0.19.
 
 ![Chorus limits](figures/02_chorus_limits.png)
 
@@ -128,27 +131,27 @@ The duty cycle is not assumed: it is the median of the field recordings, 0.19.
 | 120 | unusable | 5.3 % |
 
 The energy column is the spread only. The estimator also carries a bias the
-table does not show: it reads **8 % low at every count** (−7.6 to −10.9 %
+table does not show. It reads **8 % low at every count** (−7.6 to −10.9 %
 across 1 to 120 males, `results/chorus.json`), because the per-male level is
 set by the median recording and the loud tail pulls the true mean above it. A
-calibration absorbs a constant bias; the silence estimator has none to absorb
+calibration absorbs a constant bias. The silence estimator has none to absorb
 (|bias| < 0.5 % up to 20 males).
 
 So the calibration-free method is the better one up to about **30 calling
-males** and dead by 50. That maps onto a real split in how a farm is laid out:
-breeding bins hold tens of adults and can be run on silence alone; production
+males** and dead by 50. That maps onto a real split in how a farm is laid out.
+Breeding bins hold tens of adults and can be run on silence alone. Production
 bins hold hundreds and need the calibrated channel.
 
-## What the sensors are worth, in grams
+## Policy runs: what the sensors buy
 
 A cohort of 6,000 eggs in one bin, 300 Monte Carlo runs per condition, three
 ways of running it:
 
-- **calendar** — a fixed daily ration worked out in advance, harvest on a fixed
+- **calendar** – a fixed daily ration worked out in advance, harvest on a fixed
   day. This is how most small farms run, and it is the control.
-- **camera** — ration follows a camera estimate of how many are alive and how
+- **camera** – ration follows a camera estimate of how many are alive and how
   big they are; harvest still on the calendar.
-- **camera + microphone** — ration follows the camera, harvest is triggered by
+- **camera + microphone** – ration follows the camera, harvest is triggered by
   the first song.
 
 | Condition | Policy | Harvest, g | FCR | Day |
@@ -163,56 +166,77 @@ ways of running it:
 | | camera | 1625 ± 90 | **2.81** | 52 |
 | | **camera + mic** | **1678 ± 98** | **2.11** | 47.9 |
 
-On setpoint the sensors are worth nothing in grams, and the honest thing is to
-say so — and to say what they cost. With 300 runs per arm the differences
+### On setpoint: nothing gained, feed lost
+
+On setpoint the sensors are worth nothing in grams, and that should be said
+plainly, along with what they cost. With 300 runs per arm the differences
 against the calendar policy carry 95 % intervals of about ± 13 g
-(`results/policy_differences.json`): on setpoint camera **+8 ± 14 g** and
-camera + microphone **+2 ± 14 g**, both compatible with zero. Feed is not:
-camera + microphone runs FCR **+0.14 ± 0.01** above calendar, seven percent
+(`results/policy_differences.json`). On setpoint, camera is **+8 ± 14 g** and
+camera + microphone **+2 ± 14 g**, both compatible with zero. Feed is not.
+Camera + microphone runs FCR **+0.14 ± 0.01** above calendar, seven percent
 more feed for the same harvest, because it waits half a day past the calendar
 for the first song and feeds adults meanwhile. The earlier wording "worth
-nothing" understated that; on a well-controlled room the microphone is a small
+nothing" understated that. On a well-controlled room the microphone is a small
 net cost.
+
+### Off setpoint: where the gain is
 
 Everything they are worth appears when the room drifts by a degree and a half,
 which is what rooms do. Run cold and the calendar harvests nymphs: 1203 g
 against 1557 g, **+29 %**, because the microphone waits six more days for the
 cohort to actually mature. Run warm and the camera alone is the worst of the
-three on feed — FCR 2.81 against 2.11 — because it dutifully feeds adults that
-should already have been harvested. The camera decides how much to feed; the
+three on feed, FCR 2.81 against 2.11, because it dutifully feeds adults that
+should already have been harvested. The camera decides how much to feed. The
 microphone decides when to stop.
 
-With intervals: cold, camera + microphone **+354 ± 12 g** (+29 %), and the
+With intervals: cold, camera + microphone is **+354 ± 12 g** (+29 %), and the
 calendar and camera-only arms harvest **0 %** of the cohort as adults against
 100 % for the microphone arm. Warm, camera alone is **+153 ± 12 g** (+10 %)
-over calendar — a real gain the text above does not mention, bought with
-FCR +0.60 ± 0.01 — and camera + microphone **+207 ± 13 g** (+14 %) at FCR
+over calendar. That is a real gain the text above does not mention, bought
+with FCR +0.60 ± 0.01. Camera + microphone is **+207 ± 13 g** (+14 %) at FCR
 −0.10 ± 0.01, i.e. more crickets on less feed, harvested four days early.
 
 ![Cohort](figures/04_cohort.png)
 
-## Model discipline
+## Model discipline: one free parameter
 
 The colony model has **one** free parameter, the coefficient in the metabolic
 feed demand. It is set so that a bin fed exactly to demand at the design
-temperature comes out at a feed conversion ratio of 1.99, inside the 1.7–2.2
-reported for mass-reared house crickets. Everything else — 765 degree-days from
-egg to adult, 10 moults, 500 mg adults, crowding past one animal per 2.5 cm² —
-is from the literature, cited under Sources.
+temperature comes out at a feed conversion ratio of 1.99, inside the 1.7 to
+2.2 reported for mass-reared house crickets. Everything else is from the
+literature, cited under Sources: 765 degree-days from egg to adult, 10 moults,
+500 mg adults, crowding past one animal per 2.5 cm².
 
-That matters because the headline result is a *difference between policies*, and
-a difference is only as good as the model it is computed in. The FCR panel above
-is there so the model can be caught being wrong.
+That matters because the headline result is a *difference between policies*,
+and a difference is only as good as the model it is computed in. The FCR panel
+above is there so the model can be caught being wrong.
 
-## What this does not claim
+## Known gaps
 
-- That any of this has been run on a farm. It has not.
-- That the acoustic male count works at production density without calibration.
-  It does not — the number is 30 animals, and it is in the table.
-- That sexing can be done acoustically at the individual level. It cannot; the
-  method is a ratio of two population counts, and it needs the camera.
+- None of this has been run on a farm.
+- The acoustic male count does not work at production density without
+  calibration. The number is 30 animals, and it is in the table.
+- Sexing cannot be done acoustically at the individual level. The method is a
+  ratio of two population counts, and it needs the camera.
 
-## Checking the numbers
+## Second readings: how the page changed
+
+The carrier table was the first thing I got wrong. The original explanation for
+*Acheta domesticus* at 3.73 ± 1.93 kHz was "recorded indoors, at a distance".
+When I plotted the per-recording carriers as a histogram, 27 of the 50 sat
+tightly at 4.53 ± 0.34 kHz and 19 sat below 2.5 kHz. The quoted mean was an
+average of two clusters, and the real fault was that the peak picker cannot
+reject a tone that is not a cricket. I added medians and in-band means for all
+six taxa and left the original column in place.
+
+The policy comparison was the second. "Worth nothing on setpoint" was too kind
+once the 95 % intervals were attached: the grams are zero, but the microphone
+arm costs FCR +0.14 ± 0.01. The same pass showed that the camera-only arm gains
++153 ± 12 g when the room runs warm, which the first draft had not stated. The
+energy estimator's 8 % low bias was also unstated before. The result files and
+`tests/test_readme_numbers.py` (6 tests) went up at the same time.
+
+## Result files: checking the numbers
 
 `results/` holds the files behind every table: `song_summary.json` and
 `song_measurements.json` (one row per recording), `chorus.json`,
@@ -230,7 +254,7 @@ America · recordings from iNaturalist contributors under CC0 / CC BY / CC BY-SA
 
 ## Contact
 
-**Prof. Dr. Dmitry Mikhaylov** — Abu Dhabi, UAE
+**Prof. Dr. Dmitry Mikhaylov** – Abu Dhabi, UAE
 
 [LinkedIn](https://www.linkedin.com/in/dmitry-mikhaylov) ·
 [ORCID](https://orcid.org/0009-0009-2108-6820) ·
