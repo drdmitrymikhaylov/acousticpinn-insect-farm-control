@@ -23,6 +23,10 @@
 
 ---
 
+## Before the repo
+
+I built insect-farming technology from the ground up, from a Singapore start-up with a Belgian research partner to working cricket and black soldier fly farms in Vietnam and Uzbekistan. Microphones and cameras in the rearing rooms, models that knew what the insects needed before the calendar did. Two papers came out of it in 2023, in *IOP Conference Series: Earth and Environmental Science* (audio analysis in insect farms in Uzbekistan) and *Sustainable Agriculture Research* 12(1) (a hardware-software module monitoring *Acheta domesticus*). This repository is that know-how, rebuilt on open recordings so anyone can run it.
+
 ## Two facts: males sing, cameras count
 
 1. **Only males stridulate, and only as adults.** A microphone in a rearing bin
