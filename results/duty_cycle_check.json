@@ -1,0 +1,249 @@
+{
+ "duty_cycle_assumed": 0.1881971218779688,
+ "pool": {
+  "n": 316,
+  "n_frog": 6,
+  "median": 0.1881971218779688,
+  "median_orthoptera_only": 0.1887649405715812,
+  "median_ci95_order_stat": [
+   0.17533446457620463,
+   0.19890990250205567
+  ],
+  "reading_at_median_ci": [
+   0.9246018514107212,
+   1.063713536798346
+  ],
+  "q05": 0.059121662561696264,
+  "q25": 0.10343791700566703,
+  "q75": 0.2582939140371042,
+  "q95": 0.3500652652654018,
+  "reading_at_q25": 0.5236878997602039,
+  "reading_at_q75": 1.4331198040376494,
+  "reading_at_q05": 0.29228825990489543,
+  "reading_at_q95": 2.066609218410534,
+  "count_change_per_duty_point": 0.05908103351705472,
+  "duty_tolerance_for_5pct_count": 0.008462952833343154
+ },
+ "taxa": {
+  "Gryllus bimaculatus": {
+   "n": 50,
+   "median": 0.2266777654478639,
+   "q25": 0.162621082640907,
+   "q75": 0.30745297278565575,
+   "reading_at_median": 1.2329124922389954,
+   "reading_mixed_bin": 1.3047778609528577,
+   "cv_log_silence": 0.4687019900270789
+  },
+  "Gryllus campestris": {
+   "n": 50,
+   "median": 0.23546841393493612,
+   "q25": 0.18003757075332827,
+   "q75": 0.2660808131708085,
+   "reading_at_median": 1.2877451446905366,
+   "reading_mixed_bin": 1.1800783657629965,
+   "cv_log_silence": 0.3651537110231083
+  },
+  "Acheta domesticus": {
+   "n": 50,
+   "median": 0.16986099629289095,
+   "q25": 0.08799771327555826,
+   "q75": 0.21182125921223718,
+   "reading_at_median": 0.892873598958169,
+   "reading_mixed_bin": 0.8730801798384794,
+   "cv_log_silence": 0.5376232130577346
+  },
+  "Oecanthus fultoni": {
+   "n": 49,
+   "median": 0.1473064044133664,
+   "q25": 0.10358902319824355,
+   "q75": 0.2280958870580272,
+   "reading_at_median": 0.7643009091795563,
+   "reading_mixed_bin": 0.9442627903640294,
+   "cv_log_silence": 0.5780642998836814
+  },
+  "Neocurtilla hexadactyla": {
+   "n": 39,
+   "median": 0.2373603631439574,
+   "q25": 0.17894038123107553,
+   "q75": 0.29581213967874476,
+   "reading_at_median": 1.2996288159632372,
+   "reading_mixed_bin": 1.3029104994524283,
+   "cv_log_silence": 0.4499841159953229
+  },
+  "Oecanthus pellucens": {
+   "n": 26,
+   "median": 0.12558196432874708,
+   "q25": 0.06894709803882174,
+   "q75": 0.2545556810335763,
+   "reading_at_median": 0.6436363431475907,
+   "reading_mixed_bin": 0.90189660091638,
+   "cv_log_silence": 0.7268318138227099
+  }
+ },
+ "snr": {
+  "spearman_rho": 0.48791183465841986,
+  "p": 2.6438626462692193e-20,
+  "terciles": [
+   {
+    "n": 106,
+    "snr_db_range": [
+     10.51466178894043,
+     27.91320037841797
+    ],
+    "median_duty": 0.12802958544923163,
+    "reading_at_median": 0.6570804604220768
+   },
+   {
+    "n": 105,
+    "snr_db_range": [
+     28.082027435302734,
+     38.62739944458008
+    ],
+    "median_duty": 0.1876464138948265,
+    "reading_at_median": 0.9967474634164629
+   },
+   {
+    "n": 105,
+    "snr_db_range": [
+     38.65785217285156,
+     113.66936492919922
+    ],
+    "median_duty": 0.2596766837924117,
+    "reading_at_median": 1.4420697794951969
+   }
+  ],
+  "farmed_species": {
+   "n": 50,
+   "spearman_rho": 0.44845138055222084,
+   "p": 0.0010901202683069819
+  }
+ },
+ "measure_floor": {
+  "band_noise_only": {
+   "mean": 0.031521640625,
+   "sd": 0.0009366239430644661,
+   "n": 20,
+   "seconds": 20
+  },
+  "continuous_tone_in_noise": {
+   "mean": 0.023077343750000003,
+   "sd": 0.0008822686960415192,
+   "n": 20
+  },
+  "ceiling_by_construction": 0.5,
+  "n_recordings_at_or_below_noise_floor": 3,
+  "n_recordings_below_twice_noise_floor": 27,
+  "max_measured": 0.42647294871857233
+ },
+ "mixed_bin": {
+  "species": "Acheta domesticus",
+  "n_recordings": 50,
+  "species_median_duty": 0.16986099629289095,
+  "windows": 200,
+  "counts": [
+   {
+    "n_males": 1,
+    "silence_usable": 1.0,
+    "silence_rel_bias_pooled_duty": -0.17168922197779835,
+    "silence_rel_sd_pooled_duty": 0.4433676275539147,
+    "silence_rel_bias_species_duty": -0.07230902673267647,
+    "silence_rel_sd_species_duty": 0.49656259079812526,
+    "energy_rel_bias": -0.25925981594032665,
+    "energy_rel_sd": 0.5913730804690188,
+    "silence_rel_sd_predicted": 0.4693881715417881
+   },
+   {
+    "n_males": 2,
+    "silence_usable": 1.0,
+    "silence_rel_bias_pooled_duty": -0.15414945300331795,
+    "silence_rel_sd_pooled_duty": 0.3158011670983454,
+    "silence_rel_bias_species_duty": -0.05266484753984746,
+    "silence_rel_sd_species_duty": 0.3536907883342406,
+    "energy_rel_bias": -0.22284958222570228,
+    "energy_rel_sd": 0.43787683710270436,
+    "silence_rel_sd_predicted": 0.33190755910595277
+   },
+   {
+    "n_males": 3,
+    "silence_usable": 1.0,
+    "silence_rel_bias_pooled_duty": -0.14228096397785572,
+    "silence_rel_sd_pooled_duty": 0.2490056843749404,
+    "silence_rel_bias_species_duty": -0.03937238482249239,
+    "silence_rel_sd_species_duty": 0.27888122648657937,
+    "energy_rel_bias": -0.18996295044216016,
+    "energy_rel_sd": 0.3799892479999207,
+    "silence_rel_sd_predicted": 0.2710013871940776
+   },
+   {
+    "n_males": 5,
+    "silence_usable": 1.0,
+    "silence_rel_bias_pooled_duty": -0.15786104753855068,
+    "silence_rel_sd_pooled_duty": 0.1915218045060045,
+    "silence_rel_bias_species_duty": -0.05682175680400692,
+    "silence_rel_sd_species_duty": 0.21450046762439584,
+    "energy_rel_bias": -0.22037511970544144,
+    "energy_rel_sd": 0.2767092702028548,
+    "silence_rel_sd_predicted": 0.20991677188035407
+   },
+   {
+    "n_males": 8,
+    "silence_usable": 1.0,
+    "silence_rel_bias_pooled_duty": -0.1351038182251253,
+    "silence_rel_sd_pooled_duty": 0.1697565336598188,
+    "silence_rel_bias_species_duty": -0.031334129731172555,
+    "silence_rel_sd_species_duty": 0.19012381355871166,
+    "energy_rel_bias": -0.19746525843861096,
+    "energy_rel_sd": 0.24476198780274752,
+    "silence_rel_sd_predicted": 0.16595377955297638
+   },
+   {
+    "n_males": 12,
+    "silence_usable": 1.0,
+    "silence_rel_bias_pooled_duty": -0.12942953294714732,
+    "silence_rel_sd_pooled_duty": 0.14110430365821602,
+    "silence_rel_bias_species_duty": -0.024979047349300232,
+    "silence_rel_sd_species_duty": 0.15803390740062273,
+    "energy_rel_bias": -0.20050072559547572,
+    "energy_rel_sd": 0.20138176047308795,
+    "silence_rel_sd_predicted": 0.1355006935970388
+   },
+   {
+    "n_males": 20,
+    "silence_usable": 1.0,
+    "silence_rel_bias_pooled_duty": -0.13243457749854404,
+    "silence_rel_sd_pooled_duty": 0.11331638157875216,
+    "silence_rel_bias_species_duty": -0.028344635216276393,
+    "silence_rel_sd_species_duty": 0.1269120082741533,
+    "energy_rel_bias": -0.21496094614148964,
+    "energy_rel_sd": 0.15117692092758817,
+    "silence_rel_sd_predicted": 0.10495838594017703
+   },
+   {
+    "n_males": 30,
+    "silence_usable": 0.99,
+    "silence_rel_bias_pooled_duty": -0.1316706964336144,
+    "silence_rel_sd_pooled_duty": 0.10489248995666572,
+    "silence_rel_bias_species_duty": -0.027489104191704583,
+    "silence_rel_sd_species_duty": 0.11747742354467348,
+    "energy_rel_bias": -0.21645592050148632,
+    "energy_rel_sd": 0.12371460504072991,
+    "silence_rel_sd_predicted": 0.08569816325984726
+   }
+  ]
+ },
+ "energy_calibration": {
+  "n_single_male_runs": 200,
+  "constant": 0.20437314395619907,
+  "expected": 0.1881971218779688,
+  "ratio": 1.08595254760973,
+  "implied_energy_bias": -0.07914945068172508,
+  "se_of_ratio": 0.04242640687119285,
+  "z": 2.0259209758366565,
+  "bias_sd_if_calibrated_on_k_males": {
+   "1": 0.6,
+   "10": 0.18973665961010275,
+   "50": 0.0848528137423857,
+   "200": 0.04242640687119285
+  }
+ }
+}

@@ -116,8 +116,10 @@ Two estimators of the number of calling males run on the same signal:
 
 - **silence** – the share of time nobody is singing. If each male sings with
   duty cycle *d*, that share is (1−*d*)^N, which inverts to N. It needs no
-  calibration at all: no microphone gain, no distances. And it runs out,
-  because once the bin is never silent the measurement is spent.
+  microphone gain and no distances. It does need *d*. The first version of
+  this page said "no calibration at all"; the section after the table shows
+  what that left out. And it runs out, because once the bin is never silent
+  the measurement is spent.
 - **energy** – band energy adds over incoherent sources, so it grows linearly
   in N and never saturates. It does need the mean per-male level, which is
   exactly what drifts as animals move around the bin.
@@ -136,15 +138,107 @@ The duty cycle is not assumed. It is the median of the field recordings, 0.19.
 
 The energy column is the spread only. The estimator also carries a bias the
 table does not show. It reads **8 % low at every count** (−7.6 to −10.9 %
-across 1 to 120 males, `results/chorus.json`), because the per-male level is
-set by the median recording and the loud tail pulls the true mean above it. A
-calibration absorbs a constant bias. The silence estimator has none to absorb
-(|bias| < 0.5 % up to 20 males).
+across 1 to 120 males, `results/chorus.json`). The reason first given here, a
+median level pulled up by a loud tail, was wrong. The simulation calibrates the
+estimator on 200 single-male runs, and that calibration sample averaged 8.6 %
+above the level it was drawn from, which is 2.0 standard errors when levels
+differ between males by 60 %. The bias is that one draw. Another 200 males
+would give another number, of either sign. So the calibration does not absorb
+the bias, it is the bias: a farm that calibrates on one known male carries a
+constant error with a standard deviation of 60 %, on ten males 19 %. The
+silence estimator shows no bias here (|bias| < 0.5 % up to 20 males), for the
+reason taken apart in the next section.
 
 So the calibration-free method is the better one up to about **30 calling
 males** and dead by 50. That maps onto a real split in how a farm is laid out.
 Breeding bins hold tens of adults and can be run on silence alone. Production
 bins hold hundreds and need the calibrated channel.
+
+## The duty cycle: the one number the silence estimator needs
+
+*Added 2026-10-06, from `results/duty_cycle_check.json`.*
+
+The table above gives the silence estimator 2.4 % at five males. That figure
+comes from a simulation in which every male sings with the same duty cycle,
+0.188, and the estimator is handed that same number. Each male does get his
+own level, with a 60 % spread. So the energy column carries the differences
+between animals and the silence column carries none. This section puts them
+back.
+
+**What an error in *d* costs.** The estimate is ln(silence) / ln(1 − *d*). A
+bin whose males sing at *d* while the estimator assumes 0.188 reads
+ln(1 − *d*) / ln(1 − 0.188) of the true count. One percentage point of duty
+cycle is **5.9 %** of the count. A count good to ± 5 % needs *d* to ± 0.008.
+
+**What the recordings say about *d*.** The 0.188 is the median of 316 recordings.
+Six of them are the frog that the ancestry check removes from the song table;
+the duty-cycle median was taken before that filter. Without them it is 0.189,
+so nothing moves. The 95 % interval of that median, from order statistics, is
+0.175 to 0.199, which is already 0.92 to 1.06 of the true count. The spread
+between recordings is far wider. The quartiles are 0.10 and 0.26: a bin at the
+lower quartile reads **0.52** of its males, a bin at the upper quartile **1.43**.
+
+| Taxon | n | Median duty cycle | Quartiles | Count read when 0.188 is assumed |
+|---|---|---|---|---|
+| *Acheta domesticus* | 50 | 0.170 | 0.088 – 0.212 | 0.89 |
+| *Gryllus bimaculatus* | 50 | 0.227 | 0.163 – 0.307 | 1.23 |
+| *Gryllus campestris* | 50 | 0.235 | 0.180 – 0.266 | 1.29 |
+| *Oecanthus fultoni* | 49 | 0.147 | 0.104 – 0.228 | 0.76 |
+| *Oecanthus pellucens* | 26 | 0.126 | 0.069 – 0.255 | 0.64 |
+| *Neocurtilla hexadactyla* | 39 | 0.237 | 0.179 – 0.296 | 1.30 |
+
+*n is the number of recordings with a measurable duty cycle (26 of the 27
+Oecanthus pellucens). Last column: ln(1 − median) / ln(1 − 0.188).*
+
+The farmed species reads 11 % low on its own median, and 13 % low when the
+males in the bin differ as its recordings do. A bin that is half male then
+reads as 44 % male with a perfect camera.
+
+**The number follows the recording, not only the animal.** The duty cycle is
+the share of the envelope above a threshold set from the same recording, its
+median plus two robust standard deviations. Across the 316 recordings it rises
+with the carrier's signal-to-noise ratio: Spearman ρ = **0.49**
+(p = 3 × 10⁻²⁰), and 0.45 within the 50 *Acheta domesticus* recordings
+(p = 0.001). By thirds of signal-to-noise the median is 0.13, 0.19 and 0.26,
+which is 0.66, 1.00 and 1.44 of the count. The same measure
+returns 0.03 on band noise with no song in it and 0.02 on an uninterrupted
+tone, and cannot exceed 0.5 by construction. 27 of the 316 recordings sit below
+twice the noise value. So "measured, not assumed" is true, and part of what was
+measured is how close the phone was.
+
+**A bin whose males differ.** The chorus simulation was run again with each
+male drawing his duty cycle from the 50 *Acheta domesticus* recordings. Same
+200 ten-minute windows per count, same seeds, estimator told 0.188.
+
+| Calling males | Silence, as published | Silence, males differ | Energy, as published | Energy, males differ |
+|---|---|---|---|---|
+| 5 | 2.4 % | **19.2 %** | 24.5 % | 27.7 % |
+| 12 | 2.5 % | **14.1 %** | 16.1 % | 20.1 % |
+| 30 | 8.4 % | **10.5 %** | 10.6 % | 12.4 % |
+
+*Spread of the estimate over the 200 windows, as a share of the true count.*
+
+On top of that spread the silence estimator reads 13 to 17 % low over the
+eight counts from 1 to 30. Told the species median, 0.170, it reads 2 to 7 %
+low. The energy estimator, calibrated at 0.188, reads 19 to 26 % low.
+
+The silence estimator is still ahead of the energy estimator at every count up
+to 30. It is ahead by a factor of 1.2 to 1.5, not ten. Its spread is now
+close to what the differences between males predict on their own,
+21 %, 14 % and 9 % at 5, 12 and 30 males. It is set by which males are in the
+bin, so a longer listening window does not reduce it. "Run breeding bins on
+silence alone" should read: on silence, after measuring the duty cycle of that
+colony's males on that microphone.
+
+**What this does not show.** The spread between 50 phone recordings is not the
+spread between males of one colony. It includes the recorder, the distance and
+the signal-to-noise effect above. So 19 % at five males is most likely too
+high, and the published 2.4 % is a floor. Where a real bin sits between them needs
+recordings of individual males from one colony, and this repository has none.
+The 60 % level spread behind the energy column is an assumption of the same
+kind. People record a cricket because it is singing, so nothing here says what
+share of the males in a bin call at all. The saturation limit, about 30 males,
+does not move.
 
 ## Policy runs: what the sensors buy
 
@@ -220,6 +314,9 @@ above is there so the model can be caught being wrong.
 - None of this has been run on a farm.
 - The acoustic male count does not work at production density without
   calibration. The number is 30 animals, and it is in the table.
+- The silence count is only as good as the duty cycle it is given. A count to
+  ± 5 % needs it to ± 0.008, and the field recordings place it between 0.10 and
+  0.26 (quartiles), rising with recording quality.
 - Sexing cannot be done acoustically at the individual level. The method is a
   ratio of two population counts, and it needs the camera.
 
@@ -240,13 +337,23 @@ arm costs FCR +0.14 ± 0.01. The same pass showed that the camera-only arm gains
 energy estimator's 8 % low bias was also unstated before. The result files and
 `tests/test_readme_numbers.py` (6 tests) went up at the same time.
 
+The third was the silence estimator, on 6 October 2026. "No calibration at
+all" hid the duty cycle. The simulation gave every male the same one and told
+the estimator what it was, so its 2.4 % was the error of an estimator that
+already knew the answer to the only question it could get wrong. With duty
+cycles drawn from the *Acheta domesticus* recordings the figure is 19.2 %, and
+the lead over the energy estimator shrinks from tenfold to 1.2 to 1.5. The same
+pass found that my explanation of the energy estimator's 8 % bias was wrong:
+it is the calibration sample, not the loud tail.
+
 ## Result files: checking the numbers
 
 `results/` holds the files behind every table: `song_summary.json` and
 `song_measurements.json` (one row per recording), `chorus.json`,
-`policies.json` (mean, sd, n per condition and policy), and the two derived
-files above. `tests/test_readme_numbers.py` recomputes every number on this
-page from them; `python -m pytest tests/`.
+`policies.json` (mean, sd, n per condition and policy), the two derived
+files above, and `duty_cycle_check.json`. `tests/test_readme_numbers.py` and
+`tests/test_duty_cycle.py` recompute every number on this page from them;
+`python -m pytest tests/`.
 
 ## Sources
 
