@@ -1,0 +1,21 @@
+{
+  "upload_type": "software",
+  "title": "AcousticPINN: Acoustic Control of Cricket Farming",
+  "description": "Running a cricket farm by ear: only males stridulate",
+  "creators": [
+    {
+      "name": "Mikhaylov, Dmitry",
+      "orcid": "0009-0009-2108-6820",
+      "affiliation": "Abu Dhabi Maritime Academy, AD Ports Group"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "keywords": [
+    "acoustic monitoring",
+    "bioacoustics",
+    "entomology",
+    "insect farming",
+    "precision livestock"
+  ],
+  "access_right": "open"
+}
