@@ -1,5 +1,7 @@
 # Cricket farm control
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23529537.svg)](https://doi.org/10.5281/zenodo.23529537)
+
 **Running an insect farm off two sensors that already exist: a microphone that hears only the males, and a camera that sees everyone.**
 
 ![Policies](figures/03_policies.png)
