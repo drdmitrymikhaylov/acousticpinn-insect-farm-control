@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-11-18
+
+- The policy table re-run with a spread of development rates
+  (`results/spread_check.json`; 40 lognormal rate classes, log-sd 0 to 0.15,
+  same 300 seeds; spread 0 reproduces `policies.json` to 2e-13 g). The
+  colony model matures as one, so "harvest at the first song" was scored on
+  a cohort whose first song is its last moult. With a log-sd of 0.05 the
+  microphone arm's +354 ± 12 g over the calendar in the cold room is
+  +12 ± 12 g; at 0.10 it is behind the calendar in every room (23–33 %),
+  harvesting a bin 2–3 % adult; at 0.15 it harvests 43–44 % of the
+  no-spread figure.
+- Two triggers added beside it: a harvest on the acoustic male count over
+  the camera count (through the energy estimator with its stored −8.6 % bias
+  and spread; the silence estimator is spent on the first singing day) and a
+  harvest on a thermometer's degree-day sum. Without spread the thermometer
+  reproduces the microphone arm to the gram, run for run; with spread it
+  harvests the median animal (cold room, 0.10: 1428 g, 534 ± 3 g ahead of
+  the first song). The count trigger gets 97 % adults at FCR 3.57 against
+  2.27; an estimator reading 20 % low never fires in 59 of 300 runs.
+- In place: fact 1 qualified ("if the cohort matures as one"), a pointer
+  under the policy section, a known-gaps bullet, a fourth "second reading".
+- `tests/test_spread.py` (6 tests) pins the new section.
+
 ## 2026-10-19
 
 - LICENSE now holds the standard CC BY 4.0 legal text, so GitHub recognises the licence (it showed "Other" before). The terms are unchanged; the note on what each licence covers moved to `NOTICE.md`.

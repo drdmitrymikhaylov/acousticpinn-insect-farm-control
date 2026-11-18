@@ -33,7 +33,9 @@ I built insect-farming technology from the ground up, from a Singapore start-up 
 
 1. **Only males stridulate, and only as adults.** A microphone in a rearing bin
    therefore measures males, and a bin of nymphs is silent. The day it starts
-   singing is the day the cohort has reached adulthood.
+   singing is the day the cohort has reached adulthood, *if the cohort
+   matures as one*; the section "The first song is the cohort only in the
+   model" below says what a spread of development does to that sentence.
 2. **A camera counts everyone.** Divide the acoustic male count by the camera
    total and you have the sex ratio, continuously. Nobody has to empty the bin
    onto a tray and sort by ovipositor.
@@ -296,7 +298,162 @@ over calendar. That is a real gain the text above does not mention, bought
 with FCR +0.60 ± 0.01. Camera + microphone is **+207 ± 13 g** (+14 %) at FCR
 −0.10 ± 0.01, i.e. more crickets on less feed, harvested four days early.
 
+Every number in this section is for a colony with no spread of development
+between animals, in which the first song is the last moult. The section after
+the figure gives the colony a spread and runs the same policies again; the
+microphone's gain does not survive it as a first-song trigger, and a room
+thermometer reproduces it without one.
+
 ![Cohort](figures/04_cohort.png)
+
+## The first song is the cohort only in the model
+
+*Added 2026-11-18, from `results/spread_check.json`.*
+
+The policy table rests on a colony in which all 6,000 eggs share one
+degree-day sum. Every animal reaches adulthood on the same day, so the first
+song is the last moult, and "harvest at the first song" harvests adults. Real
+cohorts do not do that: the first adult male appears days before the median
+animal and longer before the last. This section gives the colony a spread of
+development rates (40 classes with lognormal rate multipliers of median 1 and
+log-sd 0, 0.05, 0.10 and 0.15, sharing one tray, one ration and one
+mortality) and runs the same 300 seeds through the same three policies. With
+a spread of zero every cell of the policy table above reproduces to
+2 × 10⁻¹³ g. Two triggers the page did not have run beside them: a harvest
+on the **acoustic male count** over the camera count, which is the ratio the
+second fact at the top of this page promises, and a harvest on a
+**thermometer**, the room temperature summed into degree-days against the
+literature's 765.
+
+**Where the first song lands.** The fastest of 40 classes sits at the 98.75th
+percentile of the rate distribution. With a log-sd of 0.05 / 0.10 / 0.15 it
+matures at **684 / 611 / 547** degree-days instead of 765, which at 30 °C is
+day 46 / 41 / 36 instead of 51. The median animal is then at 0.89 / 0.80 /
+0.71 of its development and, on the model's growth curve, carries **67 / 44 /
+28 %** of adult mass. The first song is one class in forty singing, 2.5 % of
+the bin adult and about 41 to 47 males calling (means over runs), and the
+policy harvests the day after.
+
+| Room | Spread (log-sd) | First song: harvest, g | Day | Adults at harvest | vs calendar |
+|---|---|---|---|---|---|
+| on setpoint | 0.00 | 1621 ± 89 | 52.5 | 100 % | +2 ± 14 g |
+| on setpoint | 0.05 | 1285 ± 81 | 47.1 | 6 % | -231 ± 13 g |
+| on setpoint | 0.10 | 934 ± 64 | 42.2 | 3 % | -469 ± 11 g |
+| on setpoint | 0.15 | 697 ± 50 | 38.0 | 2 % | -606 ± 10 g |
+| 1.5 °C cold | 0.00 | 1557 ± 79 | 58.2 | 100 % | +354 ± 12 g |
+| 1.5 °C cold | 0.05 | 1222 ± 71 | 52.1 | 5 % | +12 ± 12 g |
+| 1.5 °C cold | 0.10 | 894 ± 54 | 46.8 | 2 % | -270 ± 10 g |
+| 1.5 °C cold | 0.15 | 662 ± 44 | 42.0 | 2 % | -450 ± 9 g |
+| 1.5 °C warm | 0.00 | 1678 ± 98 | 47.9 | 100 % | +207 ± 13 g |
+| 1.5 °C warm | 0.05 | 1346 ± 88 | 43.0 | 7 % | -97 ± 12 g |
+| 1.5 °C warm | 0.10 | 981 ± 68 | 38.6 | 3 % | -408 ± 10 g |
+| 1.5 °C warm | 0.15 | 731 ± 54 | 34.7 | 2 % | -577 ± 9 g |
+
+*300 runs per cell; ± is the sd over runs; "vs calendar" carries the Welch
+95 % interval the policy differences above use. The 0.00 rows are the
+published table. Adults at harvest: share of the animals in the bin that are
+adult on harvest day, averaged over runs.*
+
+The gain the page is built on is the first row of each room. A log-sd of
+0.05, a cohort whose fastest and slowest tenths differ by about 14 % in
+development rate, takes the microphone arm from **+354 ± 12 g to +12 ± 12 g**
+over the calendar in the cold room and from +207 to −97 g in the warm one. At
+0.10 (29 % between the tenths) it is behind the calendar in all three rooms,
+by 23 to 33 %, harvesting a bin that is 2 to 3 % adult. At 0.15 (47 %) it
+harvests 43 to 44 % of what it harvests without spread. Its FCR falls with it, to
+1.64 in the cold room at 0.10, because nymphs harvested early have eaten
+little; a low FCR on a bin of nymphs is not a result.
+
+**Three triggers at a spread of 0.10.**
+
+| Room | Policy | Harvest, g | FCR | Day | Adults at harvest |
+|---|---|---|---|---|---|
+| on setpoint | calendar | 1403 ± 77 | 2.16 | 52.0 | 58 % |
+| on setpoint | camera | 1478 ± 82 | 2.21 | 52.0 | 58 % |
+| on setpoint | camera + mic, first song | 934 ± 64 | 1.62 | 42.2 | 3 % |
+| on setpoint | camera + mic, male count | 1504 ± 74 | 3.66 | 62.6 | 97 % |
+| on setpoint | camera + thermometer | 1491 ± 81 | 2.26 | 52.5 | 61 % |
+| 1.5 °C cold | calendar | 1163 ± 71 | 1.82 | 52.0 | 20 % |
+| 1.5 °C cold | camera | 1198 ± 71 | 1.83 | 52.0 | 20 % |
+| 1.5 °C cold | camera + mic, first song | 894 ± 54 | 1.64 | 46.8 | 2 % |
+| 1.5 °C cold | camera + mic, male count | 1447 ± 67 | 3.57 | 68.8 | 97 % |
+| 1.5 °C cold | camera + thermometer | 1428 ± 73 | 2.27 | 58.2 | 60 % |
+| 1.5 °C warm | calendar | 1390 ± 57 | 2.32 | 52.0 | 87 % |
+| 1.5 °C warm | camera | 1594 ± 88 | 2.85 | 52.0 | 87 % |
+| 1.5 °C warm | camera + mic, first song | 981 ± 68 | 1.63 | 38.6 | 3 % |
+| 1.5 °C warm | camera + mic, male count | 1563 ± 84 | 3.68 | 57.0 | 97 % |
+| 1.5 °C warm | camera + thermometer | 1550 ± 90 | 2.29 | 47.9 | 63 % |
+
+*Male count: harvest the day after the energy estimator's male count, divided
+by the camera count, first reaches 0.45, which is 90 % of an even sex ratio;
+the estimator carries its stored bias (−8.6 %, the mean over the rows of
+`chorus.json`) and its stored spread (5.3 % at 120 males, falling as 1/√M
+beyond), one ten-minute reading a day. Thermometer: harvest the day after the
+summed degree-days reach 765. Both wait the same confirmation day the first
+song does.*
+
+Four things to read off it.
+
+- **Without spread the thermometer is the microphone.** At a log-sd of 0 the
+  thermometer arm reproduces the first-song arm to the gram in all 300 runs
+  of all three rooms (paired difference 0.0 ± 0.0 g, 0.00 days). In this
+  model the microphone's whole gain in the policy table is the gain of
+  harvesting at maturity, and a degree-day sum knows the day of maturity as
+  well as the microphone does, because the model's maturity *is* a degree-day
+  sum. The table above compares the microphone against a calendar, not
+  against the cheapest sensor that does the same job.
+- **With spread the thermometer harvests the median animal.** In the cold
+  room it harvests on day 58.2, the day the microphone harvested without
+  spread, at 1428 g and 60 % adult, **534 ± 3 g** ahead of the first-song arm
+  in the same runs and 264 ± 12 g ahead of the calendar.
+- **The male count buys adults with feed.** Waiting for 90 % of the males to
+  sing gets 97 % adults in every room and the most grams in two of the three
+  (in the warm room the camera arm on the calendar beats it by 32 g), but it
+  waits 11 days past the median moult in the cold room and feeds a bin of
+  adults meanwhile: FCR 3.57 against the thermometer's 2.27, which is 58 %
+  more feed for 1.3 % more harvest.
+- **The silence estimator cannot run that trigger.** On the first singing day
+  about 41 to 47 males are already calling, so the bin is silent in roughly
+  (1 − 0.188)⁴⁰ ≈ 2 × 10⁻⁴ of frames or less, about half a frame in a
+  ten-minute window of 2 400. The count has to come from the calibrated channel, and it inherits
+  that channel's calibration.
+
+**What the two triggers are sensitive to** (cold room, spread 0.10).
+
+| Trigger | Harvest, g | FCR | Day | Adults at harvest | Never fires, of 300 |
+|---|---|---|---|---|---|
+| male count, estimator reads 20 % low | 1358 ± 71 | 5.35 | 80.7 | 100 % | 59 |
+| male count, estimator reads 8.6 % low (as calibrated) | 1447 ± 67 | 3.57 | 68.8 | 97 % | 0 |
+| male count, estimator unbiased | 1465 ± 68 | 3.13 | 65.6 | 92 % | 0 |
+| male count, estimator reads 20 % high | 1470 ± 71 | 2.71 | 62.3 | 82 % | 0 |
+| thermometer reads −1.0 °C | 1472 ± 70 | 2.76 | 62.7 | 84 % | 0 |
+| thermometer reads −0.5 °C | 1459 ± 72 | 2.48 | 60.3 | 73 % | 0 |
+| thermometer, true temperature | 1428 ± 73 | 2.27 | 58.2 | 60 % | 0 |
+| thermometer reads +0.5 °C | 1375 ± 73 | 2.09 | 56.1 | 46 % | 0 |
+| thermometer reads +1.0 °C | 1305 ± 70 | 1.96 | 54.2 | 33 % | 0 |
+
+*A run that never fires harvests on day 90, the end of the simulation.*
+
+An estimator that reads 20 % low never sees 0.45, because the true ratio
+tops out at 0.5, so in **59 of 300** runs the bin waits out all 90 days and
+the arm averages 1358 g at FCR 5.35. One that reads 20 % high fires at 82 %
+adult. The 8.6 % low reading the simulation calibrated itself to costs 3 days
+and 0.44 of FCR against an unbiased estimator. The thermometer is the gentler
+instrument: half a degree either way is about two days and 13 to 14 points of
+adult share, and a thermometer that reads a full degree warm harvests at 33 %
+adult and 1305 g, still **411 g** ahead of the first song.
+
+**What this does not show.** The spread is not measured here: 0.05 to 0.15
+brackets what a reared cohort might do, and the right number for house
+crickets at 30 °C would come from moult records this repository does not
+have. Forty classes put the first song at the 98.75th percentile; a real
+bin's first male is further out, so the first-song rows are kind. The classes
+share mortality, ration and density; a slow class out-competed for food would
+fall further behind. The count trigger's noise is one ten-minute window a
+day, and averaging a day's windows shrinks its 1.5 % spread, not its bias.
+The thermometer reads the room, not the bin. An even sex ratio is still
+assumed, and the count trigger's 0.45 assumes it. Nothing here touches the
+song measurements or the chorus section.
 
 ## Model discipline: one free parameter
 
@@ -321,6 +478,13 @@ above is there so the model can be caught being wrong.
   0.26 (quartiles), rising with recording quality.
 - Sexing cannot be done acoustically at the individual level. The method is a
   ratio of two population counts, and it needs the camera.
+- The colony model has no spread of development between animals, so its
+  first song is the cohort's maturity. With a spread, the first-song trigger
+  harvests nymphs (2 to 3 % adult at a log-sd of 0.10), and the microphone's
+  gain in the policy table is reproduced to the gram by a thermometer's
+  degree-day sum. The trigger that does use the male count needs the
+  calibrated energy channel, not the silence count, and pays for its adults
+  in feed.
 
 ## Second readings: how the page changed
 
@@ -348,13 +512,24 @@ the lead over the energy estimator shrinks from tenfold to 1.2 to 1.5. The same
 pass found that my explanation of the energy estimator's 8 % bias was wrong:
 it is the calibration sample, not the loud tail.
 
+The fourth was the policy table itself, on 18 November 2026. Every animal in
+the colony model matures on the same day, so "harvest at the first song" was
+being scored on a cohort in which the first song is the last moult. With a
+spread of development rates the same trigger harvests a bin that is 2 to 3 %
+adult and falls behind the calendar in every room; a thermometer summing
+degree-days reproduces the microphone arm to the gram without spread and
+beats it with. The policy runs had never used the male count the chorus
+section measures; the trigger that does was added, and it has to run on the
+calibrated channel.
+
 ## Result files: checking the numbers
 
 `results/` holds the files behind every table: `song_summary.json` and
 `song_measurements.json` (one row per recording), `chorus.json`,
 `policies.json` (mean, sd, n per condition and policy), the two derived
-files above, and `duty_cycle_check.json`. `tests/test_readme_numbers.py` and
-`tests/test_duty_cycle.py` recompute every number on this page from them;
+files above, `duty_cycle_check.json` and `spread_check.json`.
+`tests/test_readme_numbers.py`, `tests/test_duty_cycle.py` and
+`tests/test_spread.py` recompute every number on this page from them;
 `python -m pytest tests/`.
 
 ## Sources
